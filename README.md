@@ -23,6 +23,15 @@ To configure the application edit the config file "PocoGenerator.exe.config"
 
 **AppSettings**
 
+      <appSettings>
+	    <add key="BaseClass" value=""/>
+	    <add key="DatabaseName" value="AdventureWorks2014"/>
+	    <add key="Using" value="System"/>
+	    <add key="Namespace" value="MyProject.Objects"/>
+	    <add key="OutputPath" value="c:\temp\generated"/>
+	    <add key="OutputFileExtention" value="{0}.generated.cs"/>
+	    <add key="GenerateDapperExtentionsMapperClass" value="true"/>
+      </appSettings>
 - BaseClass 
 	- The class that all POCO classes should inherit from.
 - DatabaseName
@@ -39,6 +48,10 @@ To configure the application edit the config file "PocoGenerator.exe.config"
 	- Set to true if you want to generate Dapper Extentions mapper classes
 
 **ConnectionStrings**
+
+    <connectionStrings>
+    	<add name="dbConnection" ConnectionString="server=localhost;user=sa;password=password;database=AdventureWorks2014"/>
+    </connectionStrings>
 
 Make sure that the connection string dbConnection points to your database
 
