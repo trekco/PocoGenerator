@@ -1,0 +1,49 @@
+﻿@using System.Globalization
+@using PocoGenerator.Generators
+@model PocoGenerator.Models.TemplateData
+#region usings
+@if (Model.GenerateDapperExtentionsMapperClass)
+{@Raw("using DapperExtensions.Mapper;\n")}
+@foreach (string name in Model.NamespaceImports)
+{
+@Raw(string.Format("using {0};\n", name))
+}
+#endregion
+
+namespace @Model.Namespace
+{
+    [Serializable]
+    public partial class @Model.Table.ClassName
+    {
+        @foreach (SqlField field in Model.Table.Fields)
+        {
+            @Raw(string.Format("\t\tpublic {0} {1} ", field.Type, field.Name) + "{ get; set; }\n")
+        }
+    }
+@if (Model.GenerateDapperExtentionsMapperClass)
+{
+    <text>
+    public class @(Model.Table.ClassName)CustomMapper : ClassMapper<@Model.Table.ClassName>
+    {
+        public @(Model.Table.ClassName)CustomMapper()
+        {
+            base.Table("@Model.Table.Name");
+            
+            @foreach (SqlField field in Model.Table.Fields)
+            {
+                if (field.IsPrimaryKey)
+                {
+                var keyType = field.Type.ToLower().Equals("guid") ? "KeyType.Guid" : "KeyType.Identity";
+                @Raw(string.Format("\t\t\tMap(f => f.{0}).Key({1})\n", field.Name, keyType))
+                }
+                else
+                {
+                @Raw(string.Format("\t\t\tMap(f => f.{0}).Column(\"{1}\")\n", field.Name, field.Name))
+                }
+            }            
+        }
+    }
+    </text>
+}
+
+}
