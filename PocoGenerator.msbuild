@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build"  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+      <AssemblyName>PocoGenerator</AssemblyName>
+    <SourceDir>$(MSBuildProjectDirectory)\</SourceDir>
+    <OutputDir>$(MSBuildProjectDirectory)\build</OutputDir>
+    <SolutionDir>$(SourceDir)\src\</SolutionDir>   
+    <SolutionFile>PocoGenerator.sln</SolutionFile>   
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <ReleaseBuildConfig Include="$(SolutionDir)$(SolutionFile)">
+      <Properties>OutputPath=$(OutputDir)\;Configuration=Release</Properties>
+    </ReleaseBuildConfig>   
+  </ItemGroup>  
+
+  <Target Name="Build">
+    <RemoveDir Directories="$(OutputDir)" Condition="Exists('$(OutputDir)')" />
+    <MakeDir Directories="$(OutputDir)" Condition="!Exists('$(OutputDir)')" />
+    <MSBuild Projects="@(ReleaseBuildConfig)"/>
+	
+	<ItemGroup>
+      <filesToDelete Include="$(OutputDir)\*.pdb" />
+      <filesToDelete Include="$(OutputDir)\*.xml" />
+    </ItemGroup>
+	<Delete Files="@(filesToDelete)"  />
+  </Target>
+  
+</Project>
