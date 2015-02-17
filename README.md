@@ -5,7 +5,7 @@ PocoGenerator generates POCO(Plain old CLR objects) classes from a database
 ----------
 ## Features ##
 1. Generates POCO classes from MSSQL database
-2. Support Dapper Extentions
+2. Support Dapper Extensions
 
 ## Requirements ##
 1. .net 4.5.2(can be change to any other version)
@@ -17,7 +17,7 @@ Build by running build.bat
 
 
 ## Usage ##
-Once the config is updateded for your environment, all you have to do is run PocoGenerator.exe
+Once the config is updated for your environment, all you have to do is run PocoGenerator.exe
 
 To configure the application edit the config file "PocoGenerator.exe.config"
 
@@ -37,7 +37,7 @@ To configure the application edit the config file "PocoGenerator.exe.config"
 - DatabaseName
 	- The name of your database.
 - Using
-	- Usings that should be inserted. Semicolon ";" seperated list.
+	- Usings that should be inserted. Semicolon ";" separated list.
 - Namespace
 	- The Namespace of all the POCO classes.
 - OutputPath
@@ -45,7 +45,7 @@ To configure the application edit the config file "PocoGenerator.exe.config"
 - OutputFileExtention
 	- extention/file name format.
 - GenerateDapperExtentionsMapperClass
-	- Set to true if you want to generate Dapper Extentions mapper classes
+	- Set to true if you want to generate Dapper Extensions mapper classes
 
 **ConnectionStrings**
 
@@ -53,7 +53,7 @@ To configure the application edit the config file "PocoGenerator.exe.config"
     	<add name="dbConnection" ConnectionString="server=localhost;user=sa;password=password;database=AdventureWorks2014"/>
     </connectionStrings>
 
-Make sure that the connection string dbConnection points to your database
+Make sure that the connection string "dbConnection" points to your database
 
 ----------
 
@@ -64,5 +64,5 @@ Feel free to contribute. This app still needs a lot of improvements. So far it i
 ## Future Features ##
 
 1. MySQL support
-2. Propper error handling
+2. Proper error handling
 3. Detailed console output
